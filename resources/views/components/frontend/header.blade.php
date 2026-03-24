@@ -94,6 +94,10 @@
                                         <a class="nav-link" href="{{ route('home') }}">Home</a>
                                     </li>
 
+                                    <li class="nav-item {{ request()->routeIs('posts.index') ? 'active' : '' }}">
+                                        <a class="nav-link" href="{{ route('posts.index') }}">Blog</a>
+                                    </li>
+
                                     <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
                                         <a class="nav-link" href="{{ route('about') }}">About</a>
                                     </li>
@@ -112,8 +116,8 @@
                                 </ul>
 
                                 <div class="header-search-form mr-auto">
-                                    <form action="#" method="post">
-                                        <input type="search" placeholder="Input your keyword then press enter..." id="search" name="search">
+                                    <form action="{{ route('posts.index') }}" method="get">
+                                        <input type="search" placeholder="Input your keyword then press enter..." id="search" name="q" value="{{ request('q') }}">
                                     </form>
                                 </div>
 
