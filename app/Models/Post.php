@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -13,8 +15,8 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use SoftDeletes;
     use RecordUserActivity;
+    use SoftDeletes;
 
     /**
      * Velden die via mass assignment ingevuld mogen worden.
@@ -26,6 +28,7 @@ class Post extends Model
         'excerpt',
         'body',
         'is_published',
+        'is_featured',
         'published_at',
         'created_by',
         'updated_by',
@@ -38,6 +41,7 @@ class Post extends Model
     {
         return [
             'is_published' => 'boolean',
+            'is_featured' => 'boolean',
             'published_at' => 'datetime',
         ];
     }
@@ -185,7 +189,7 @@ class Post extends Model
      */
     public function scopeSortBySafe(Builder $query, string $sort, string $dir): Builder
     {
-        $allowed = ['id', 'title', 'slug', 'created_at', 'published_at', 'is_published'];
+        $allowed = ['id', 'title', 'slug', 'created_at', 'published_at', 'is_published', 'is_featured'];
 
         if (! in_array($sort, $allowed, true)) {
             $sort = 'created_at';
@@ -195,6 +199,7 @@ class Post extends Model
 
         return $query->orderBy($sort, $dir);
     }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

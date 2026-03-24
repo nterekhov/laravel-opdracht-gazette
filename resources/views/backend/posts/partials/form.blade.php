@@ -61,7 +61,7 @@
     </div>
 
     {{-- ========================= STATUS ========================= --}}
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-2">
         <label class="form-label">Status</label>
         <select name="is_published" class="form-select @error('is_published') is-invalid @enderror">
             <option value="1" @selected((string) old('is_published', $post?->is_published ?? '0') === '1')>Published</option>
@@ -73,8 +73,31 @@
         @enderror
     </div>
 
+    {{-- ========================= FEATURED ========================= --}}
+    <div class="col-12 col-md-2">
+        <label class="form-label">Featured</label>
+        <div class="form-check form-switch pt-1">
+            <input type="hidden" name="is_featured" value="0">
+            <input
+                class="form-check-input @error('is_featured') is-invalid @enderror"
+                type="checkbox"
+                name="is_featured"
+                value="1"
+                id="is_featured"
+                @checked((bool) old('is_featured', $post?->is_featured ?? false))
+            >
+            <label class="form-check-label" for="is_featured">
+                Is featured
+            </label>
+        </div>
+
+        @error('is_featured')
+        <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
+    </div>
+
     {{-- ========================= PUBLISHED AT ========================= --}}
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-2">
         <label class="form-label">Published at</label>
         <input
             type="datetime-local"

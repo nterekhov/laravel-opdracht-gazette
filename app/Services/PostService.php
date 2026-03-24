@@ -28,6 +28,7 @@ class PostService
                 'excerpt' => $data['excerpt'] ?? null,
                 'body' => $data['body'],
                 'is_published' => $data['is_published'],
+                'is_featured' => $data['is_featured'] ?? false,
                 'published_at' => $data['published_at'] ?? null,
             ]);
 
@@ -58,6 +59,7 @@ class PostService
                 'excerpt' => $data['excerpt'] ?? null,
                 'body' => $data['body'],
                 'is_published' => $data['is_published'],
+                'is_featured' => $data['is_featured'] ?? false,
                 'published_at' => $data['published_at'] ?? null,
             ]);
 
