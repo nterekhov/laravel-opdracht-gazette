@@ -15,6 +15,11 @@
         }, 300);
     }).trigger("resize");
 
+    // Search Btn Active Code
+    $('#searchbtn').on('click', function () {
+        $('body').toggleClass('search-form-on');
+    });
+
     // Newsticker Active Code
     $.simpleTicker($("#breakingNewsTicker"), {
         speed: 1000,
@@ -110,10 +115,7 @@
         });
     }
 
-    // Search Btn Active Code
-    $('#searchbtn').on('click', function () {
-        $('body').toggleClass('search-form-on');
-    })
+
 
     // Video Active Code
     if ($.fn.magnificPopup) {

@@ -2,7 +2,7 @@
     title="Artikels {{ $q ? '- Zoekresultaten voor: ' . $q : '' }}"
     meta-description="Bekijk al onze artikels{{ $q ? ' over ' . $q : '' }}."
 >
-    <!-- Breadcrumb Area Start -->
+
     <x-frontend.breadcrumb>
         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
         @if($q)
@@ -12,7 +12,6 @@
             <li class="breadcrumb-item active" aria-current="page">Artikels</li>
         @endif
     </x-frontend.breadcrumb>
-    <!-- Breadcrumb Area End -->
 
     <section class="gazette-news-area section_padding_100">
         <div class="container">

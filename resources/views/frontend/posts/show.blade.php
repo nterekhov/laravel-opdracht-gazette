@@ -27,7 +27,7 @@
                             </div>
                             <h2 class="font-pt mb-30">{{ $post->title }}</h2>
                             <p class="gazette-post-date">{{ optional($post->published_at)->format('F d, Y') }}</p>
-                            
+
                             <div class="post-body">
                                 {!! $post->body !!}
                             </div>
