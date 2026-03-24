@@ -1,6 +1,6 @@
 <x-frontend.shell
-    title="Posts {{ $q ? '- Zoekresultaten voor: ' . $q : '' }}"
-    meta-description="Bekijk al onze posts{{ $q ? ' over ' . $q : '' }}."
+    title="Posts {{ $q ? '- Zoekresultaten voor: ' . $q : (isset($category) ? '- Categorie: ' . $category->name : '') }}"
+    meta-description="Bekijk al onze posts{{ $q ? ' over ' . $q : (isset($category) ? ' in de categorie ' . $category->name : '') }}."
 >
 
     <x-frontend.breadcrumb>
@@ -8,6 +8,9 @@
         @if($q)
             <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">Posts</a></li>
             <li class="breadcrumb-item active" aria-current="page">Zoeken: {{ $q }}</li>
+        @elseif(isset($category))
+            <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">Posts</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Categorie: {{ $category->name }}</li>
         @else
             <li class="breadcrumb-item active" aria-current="page">Posts</li>
         @endif
@@ -31,8 +34,8 @@
 
                                     <div class="single-catagory-post-content">
                                         <div class="gazette-post-tag">
-                                            @foreach($post->categories->take(1) as $category)
-                                                <a href="#">{{ $category->name }}</a>
+                                            @foreach($post->categories->take(1) as $postCategory)
+                                                <a href="{{ route('categories.show', $postCategory) }}">{{ $postCategory->name }}</a>
                                             @endforeach
                                         </div>
 
@@ -53,7 +56,7 @@
                         @empty
                             <div class="col-12">
                                 <div class="alert alert-info">
-                                    Geen posts gevonden @if($q) voor "{{ $q }}" @endif.
+                                    Geen posts gevonden @if($q) voor "{{ $q }}" @elseif(isset($category)) in categorie "{{ $category->name }}" @endif.
                                 </div>
                             </div>
                         @endforelse
@@ -74,10 +77,10 @@
                                 <h5>Categories</h5>
                             </div>
 
-                            @forelse($categories as $category)
+                            @forelse($categories as $sidebarCategory)
                                 <div class="single-breaking-news-widget">
-                                    <a href="#" class="font-pt">{{ $category->name }}</a>
-                                    <span>{{ $category->posts_count }} post(s)</span>
+                                    <a href="{{ route('categories.show', $sidebarCategory) }}" class="font-pt">{{ $sidebarCategory->name }}</a>
+                                    <span>{{ $sidebarCategory->posts_count }} post(s)</span>
                                 </div>
                             @empty
                                 <p>Geen categorieën beschikbaar.</p>

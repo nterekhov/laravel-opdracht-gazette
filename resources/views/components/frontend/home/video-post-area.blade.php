@@ -19,7 +19,7 @@
                         @endif
 
                         <h5>
-                            <a href="#">{{ $post->title }}</a>
+                            <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
                         </h5>
                     </div>
                 </div>

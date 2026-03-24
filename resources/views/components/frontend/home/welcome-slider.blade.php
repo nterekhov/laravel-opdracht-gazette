@@ -9,16 +9,16 @@
             <div class="single-blog-post-content">
                 <div class="tags">
                     @foreach($post->categories->take(4) as $category)
-                        <a href="#">{{ $category->name }}</a>
+                        <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
                     @endforeach
                 </div>
 
                 <h3>
-                    <a href="#" class="font-pt">{{ $post->title }}</a>
+                    <a href="{{ route('posts.show', $post) }}" class="font-pt">{{ $post->title }}</a>
                 </h3>
 
                 <div class="date">
-                    <a href="#">{{ optional($post->published_at)->format('M d, Y') }}</a>
+                    <a href="{{ route('posts.show', $post) }}">{{ optional($post->published_at)->format('M d, Y') }}</a>
                 </div>
             </div>
         </div>

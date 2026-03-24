@@ -18,12 +18,12 @@
                             <div class="editorial-post-content">
                                 <div class="gazette-post-tag">
                                     @foreach($post->categories->take(1) as $category)
-                                        <a href="#">{{ $category->name }}</a>
+                                        <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
                                     @endforeach
                                 </div>
 
                                 <h4>
-                                    <a href="#" class="font-pt">{{ $post->title }}</a>
+                                    <a href="{{ route('posts.show', $post) }}" class="font-pt">{{ $post->title }}</a>
                                 </h4>
 
                                 <p>

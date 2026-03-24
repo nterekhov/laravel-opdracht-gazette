@@ -8,7 +8,7 @@
             <ul class="marquee-content-items">
                 @forelse($latestPosts->take(6) as $post)
                     <li>
-                        <a href="#">
+                        <a href="{{ route('posts.show', $post) }}">
                             <span class="latest-news-time">
                                 {{ optional($post->published_at)->format('H:i') }}
                             </span>
