@@ -95,7 +95,7 @@
                                     </li>
 
                                     <li class="nav-item {{ request()->routeIs('posts.index') ? 'active' : '' }}">
-                                        <a class="nav-link" href="{{ route('posts.index') }}">Artikels</a>
+                                        <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
                                     </li>
 
                                     <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">

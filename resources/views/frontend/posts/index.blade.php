@@ -1,15 +1,15 @@
 <x-frontend.shell
-    title="Artikels {{ $q ? '- Zoekresultaten voor: ' . $q : '' }}"
-    meta-description="Bekijk al onze artikels{{ $q ? ' over ' . $q : '' }}."
+    title="Posts {{ $q ? '- Zoekresultaten voor: ' . $q : '' }}"
+    meta-description="Bekijk al onze posts{{ $q ? ' over ' . $q : '' }}."
 >
 
     <x-frontend.breadcrumb>
         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
         @if($q)
-            <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">Artikels</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">Posts</a></li>
             <li class="breadcrumb-item active" aria-current="page">Zoeken: {{ $q }}</li>
         @else
-            <li class="breadcrumb-item active" aria-current="page">Artikels</li>
+            <li class="breadcrumb-item active" aria-current="page">Posts</li>
         @endif
     </x-frontend.breadcrumb>
 
@@ -53,7 +53,7 @@
                         @empty
                             <div class="col-12">
                                 <div class="alert alert-info">
-                                    Geen artikels gevonden @if($q) voor "{{ $q }}" @endif.
+                                    Geen posts gevonden @if($q) voor "{{ $q }}" @endif.
                                 </div>
                             </div>
                         @endforelse

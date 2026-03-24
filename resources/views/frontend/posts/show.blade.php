@@ -4,7 +4,7 @@
 >
     <x-frontend.breadcrumb>
         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">Artikels</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">Posts</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $post->title }}</li>
     </x-frontend.breadcrumb>
 
