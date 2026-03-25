@@ -27,7 +27,7 @@ class PostService
                 'slug' => $data['slug'],
                 'excerpt' => $data['excerpt'] ?? null,
                 'body' => $data['body'],
-                'is_published' => $data['is_published'],
+                'is_published' => $data['is_published'] ?? false,
                 'is_featured' => $data['is_featured'] ?? false,
                 'published_at' => $data['published_at'] ?? null,
             ]);
@@ -58,7 +58,7 @@ class PostService
                 'slug' => $data['slug'],
                 'excerpt' => $data['excerpt'] ?? null,
                 'body' => $data['body'],
-                'is_published' => $data['is_published'],
+                'is_published' => $data['is_published'] ?? false,
                 'is_featured' => $data['is_featured'] ?? false,
                 'published_at' => $data['published_at'] ?? null,
             ]);
