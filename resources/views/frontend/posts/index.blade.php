@@ -20,6 +20,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9">
+                    @if(isset($category))
+                        <div class="category-header mb-50">
+                            <h2 class="font-pt mb-2">{{ $category->name }}</h2>
+                            @if($category->description)
+                                <p class="mb-0">{{ $category->description }}</p>
+                            @endif
+                        </div>
+                    @elseif($q)
+                        <div class="search-header mb-50">
+                            <h2 class="font-pt">Zoekresultaten voor: {{ $q }}</h2>
+                        </div>
+                    @endif
+
                     <div class="row">
                         @forelse($posts as $post)
                             <div class="col-12 col-md-6">
