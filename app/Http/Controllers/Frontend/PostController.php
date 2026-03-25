@@ -21,6 +21,7 @@ class PostController extends Controller
             ->with(['user', 'categories', 'media'])
             ->where('is_published', true)
             ->whereNotNull('published_at')
+            ->where('published_at', '<=', now())
             ->search($q ?? '')
             ->latest('published_at')
             ->paginate(12)
@@ -30,7 +31,8 @@ class PostController extends Controller
             ->withCount([
                 'posts' => function ($query) {
                     $query->where('is_published', true)
-                        ->whereNotNull('published_at');
+                        ->whereNotNull('published_at')
+                        ->where('published_at', '<=', now());
                 },
             ])
             ->having('posts_count', '>', 0)
@@ -50,7 +52,7 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
-        if (! $post->is_published || ! $post->published_at) {
+        if (! $post->is_published || ! $post->published_at || $post->published_at->isFuture()) {
             abort(404);
         }
 

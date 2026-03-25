@@ -14,6 +14,7 @@ class CategoryController extends Controller
             ->with(['user', 'categories', 'media'])
             ->where('is_published', true)
             ->whereNotNull('published_at')
+            ->where('published_at', '<=', now())
             ->latest('published_at')
             ->paginate(12)
             ->withQueryString();
@@ -22,7 +23,8 @@ class CategoryController extends Controller
             ->withCount([
                 'posts' => function ($query) {
                     $query->where('is_published', true)
-                        ->whereNotNull('published_at');
+                        ->whereNotNull('published_at')
+                        ->where('published_at', '<=', now());
                 },
             ])
             ->having('posts_count', '>', 0)
