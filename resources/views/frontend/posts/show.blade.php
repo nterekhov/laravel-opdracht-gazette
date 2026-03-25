@@ -26,7 +26,9 @@
                                 @endforeach
                             </div>
                             <h2 class="font-pt mb-30">{{ $post->title }}</h2>
-                            <p class="gazette-post-date">{{ optional($post->published_at)->format('F d, Y') }}</p>
+                            <p class="gazette-post-date">
+                                <span>Door: {{ $post->user->name }}</span> | <span>{{ optional($post->published_at)->format('F d, Y') }}</span>
+                            </p>
 
                             <div class="post-body">
                                 {!! $post->body !!}
