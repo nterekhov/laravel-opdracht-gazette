@@ -10,6 +10,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 use Throwable;
 
 class MediaController extends Controller
@@ -68,7 +70,19 @@ class MediaController extends Controller
                 default => 'media/unattached',
             };
 
-            $storedPath = $file->store($directory, 'public');
+            // Use Intervention Image to process the file
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read($file);
+
+            // Optional: Resize if it's too large (e.g., max 1200px width/height)
+            $image->scaleDown(width: 1200);
+
+            // Generate a unique filename
+            $filename = str()->random(40).'.jpg';
+            $storedPath = $directory.'/'.$filename;
+
+            // Save the processed image to the storage
+            Storage::disk('public')->put($storedPath, (string) $image->toJpeg(80));
 
             if (($data['is_featured'] ?? false) && ! empty($data['mediable_type']) && ! empty($data['mediable_id'])) {
                 Media::query()
@@ -83,8 +97,8 @@ class MediaController extends Controller
                 'disk' => 'public',
                 'file_name' => $file->getClientOriginalName(),
                 'file_path' => $storedPath,
-                'mime_type' => $file->getClientMimeType(),
-                'file_size' => $file->getSize(),
+                'mime_type' => 'image/jpeg',
+                'file_size' => Storage::disk('public')->size($storedPath),
                 'alt_text' => $data['alt_text'] ?? null,
                 'caption' => $data['caption'] ?? null,
                 'sort_order' => $data['sort_order'],
@@ -101,7 +115,7 @@ class MediaController extends Controller
 
             return back()
                 ->withInput()
-                ->with('error', 'Media could not be created. Please try again.');
+                ->with('error', 'Media could not be created: '.$e->getMessage());
         }
     }
 
@@ -156,7 +170,15 @@ class MediaController extends Controller
                     default => 'media/unattached',
                 };
 
-                $storedPath = $file->store($directory, 'public');
+                // Use Intervention Image to process the file
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file);
+                $image->scaleDown(width: 1200);
+
+                $filename = str()->random(40).'.jpg';
+                $storedPath = $directory.'/'.$filename;
+
+                Storage::disk('public')->put($storedPath, (string) $image->toJpeg(80));
 
                 if ($media->file_path && Storage::disk($media->disk)->exists($media->file_path)) {
                     Storage::disk($media->disk)->delete($media->file_path);
@@ -164,8 +186,8 @@ class MediaController extends Controller
 
                 $newPath = $storedPath;
                 $newName = $file->getClientOriginalName();
-                $newMime = $file->getClientMimeType();
-                $newSize = $file->getSize();
+                $newMime = 'image/jpeg';
+                $newSize = Storage::disk('public')->size($storedPath);
             }
 
             if (($data['is_featured'] ?? false) && ! empty($data['mediable_type']) && ! empty($data['mediable_id'])) {
@@ -200,7 +222,7 @@ class MediaController extends Controller
 
             return back()
                 ->withInput()
-                ->with('error', 'Media could not be updated. Please try again.');
+                ->with('error', 'Media could not be updated: '.$e->getMessage());
         }
     }
 
