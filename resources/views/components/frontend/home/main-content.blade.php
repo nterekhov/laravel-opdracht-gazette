@@ -94,6 +94,12 @@
                                     @endif
 
                                     <div class="todays-post-content">
+                                        <div class="gazette-post-tag">
+                                            @foreach($post->categories->take(1) as $category)
+                                                <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
+                                            @endforeach
+                                        </div>
+
                                         <h4>
                                             <a href="{{ route('posts.show', $post) }}" class="font-pt mb-2">{{ $post->title }}</a>
                                         </h4>
