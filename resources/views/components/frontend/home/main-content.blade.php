@@ -154,14 +154,6 @@
                             </div>
                         @endforeach
                     </div>
-
-                    @if($categoryPosts->isNotEmpty())
-                        <div class="row">
-                            <div class="col-12 text-center mt-30">
-                                <a href="{{ route('posts.index') }}" class="btn gazette-btn">Bekijk alle artikels</a>
-                            </div>
-                        </div>
-                    @endif
                 </div>
             </div>
 
