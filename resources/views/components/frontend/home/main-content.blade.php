@@ -58,7 +58,7 @@
                                     @endif
 
                                     <div class="todays-post-content">
-                                        <div class="gazette-post-tag">
+                                        <div class="gazette-post-tag mt-3">
                                             @foreach($post->categories->take(1) as $category)
                                                 <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
                                             @endforeach
@@ -94,7 +94,7 @@
                                     @endif
 
                                     <div class="todays-post-content">
-                                        <div class="gazette-post-tag">
+                                        <div class="gazette-post-tag mt-3">
                                             @foreach($post->categories->take(1) as $category)
                                                 <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
                                             @endforeach
@@ -132,7 +132,7 @@
                                     @endif
 
                                     <div class="single-catagory-post-content">
-                                        <div class="gazette-post-tag">
+                                        <div class="gazette-post-tag mt-3">
                                             @foreach($post->categories->take(1) as $category)
                                                 <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
                                             @endforeach

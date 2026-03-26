@@ -46,7 +46,7 @@
                                     @endif
 
                                     <div class="single-catagory-post-content">
-                                        <div class="gazette-post-tag">
+                                        <div class="gazette-post-tag mt-3">
                                             @foreach($post->categories as $postCategory)
                                                 <a href="{{ route('categories.show', $postCategory) }}">{{ $postCategory->name }}</a>
                                             @endforeach
