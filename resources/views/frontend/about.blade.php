@@ -34,8 +34,6 @@
                             </div>
                         </div>
 
-                        <img src="{{ asset('frontend/gazette/img/bg-img/20.jpg') }}" alt="Redactie Gazette" class="mb-30 img-fluid w-100">
-
                         <h3 class="font-pt mb-20">Onze Geschiedenis</h3>
                         <p>Gazette werd opgericht met het idee dat de digitale wereld nood heeft aan vertrouwde stemmen. Sinds onze start zijn we gegroeid van een kleine blog tot een volwaardig nieuwsplatform met een gepassioneerd team van schrijvers en experts uit diverse vakgebieden.</p>
                     </div>
@@ -43,59 +41,5 @@
             </div>
         </div>
     </section>
-    <!-- Team Area -->
-    <section class="gazette-team-area section_padding_100_70 bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="widget-title">
-                        <h2 class="font-pt">Ons Team</h2>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <!-- Single Team Member -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-team-member mb-30">
-                        <img src="{{ asset('frontend/gazette/img/blog-img/25.jpg') }}" alt="Team Lid">
-                        <div class="team-info mt-3">
-                            <h5 class="font-pt mb-0">Emma Janssen</h5>
-                            <p>Hoofdredacteur</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Team Member -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-team-member mb-30">
-                        <img src="{{ asset('frontend/gazette/img/blog-img/25.jpg') }}" alt="Team Lid">
-                        <div class="team-info mt-3">
-                            <h5 class="font-pt mb-0">Mark de Vries</h5>
-                            <p>Senior Journalist</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Team Member -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-team-member mb-30">
-                        <img src="{{ asset('frontend/gazette/img/blog-img/25.jpg') }}" alt="Team Lid">
-                        <div class="team-info mt-3">
-                            <h5 class="font-pt mb-0">Sophie Bakker</h5>
-                            <p>Tech Expert</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Team Member -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-team-member mb-30">
-                        <img src="{{ asset('frontend/gazette/img/blog-img/25.jpg') }}" alt="Team Lid">
-                        <div class="team-info mt-3">
-                            <h5 class="font-pt mb-0">Lucas Meyer</h5>
-                            <p>Fotograaf</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </x-frontend.shell>
