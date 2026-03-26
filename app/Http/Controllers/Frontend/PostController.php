@@ -58,8 +58,22 @@ class PostController extends Controller
 
         $post->load(['user', 'categories', 'media']);
 
+        $categories = Category::query()
+            ->withCount([
+                'posts' => function ($query) {
+                    $query->where('is_published', true)
+                        ->whereNotNull('published_at')
+                        ->where('published_at', '<=', now());
+                },
+            ])
+            ->having('posts_count', '>', 0)
+            ->orderByDesc('posts_count')
+            ->take(6)
+            ->get();
+
         return view('frontend.posts.show', [
             'post' => $post,
+            'categories' => $categories,
         ]);
     }
 }

@@ -10,11 +10,40 @@
 
     <section class="single-post-area section_padding_100">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
+            <div class="row">
+                <div class="col-12 col-lg-9">
                     <x-frontend.posts.single-content :post="$post" />
 
                     <x-frontend.posts.discussion-area :post="$post" />
+                </div>
+
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="sidebar-area">
+                        <div class="breaking-news-widget">
+                            <div class="widget-title">
+                                <h5>Categories</h5>
+                            </div>
+
+                            @forelse($categories as $sidebarCategory)
+                                <div class="single-breaking-news-widget">
+                                    <a href="{{ route('categories.show', $sidebarCategory) }}" class="font-pt">{{ $sidebarCategory->name }}</a>
+                                    <span>{{ $sidebarCategory->posts_count }} post(s)</span>
+                                </div>
+                            @empty
+                                <p>Geen categorieën beschikbaar.</p>
+                            @endforelse
+                        </div>
+
+                        <div class="donnot-miss-widget">
+                            <div class="widget-title">
+                                <h5>Advert</h5>
+                            </div>
+
+                            <div class="single-dont-miss-post-thumb">
+                                <img src="{{ asset('frontend/gazette/img/bg-img/add.png') }}" alt="advertentie">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
